@@ -27,8 +27,8 @@ public interface ObservableScrollViewCallbacks {
      * or invoke scroll as appropriate.
      *
      * @param scrollY     scroll position in Y axis
-     * @param firstScroll true when this is called for the first time in the consecutive motion events
-     * @param dragging    true when the view is dragged and false when the view is scrolled in the inertia
+     * @param firstScroll true when this is called for the first time in the consecutive（连续的） motion events
+     * @param dragging    true when the view is dragged and false when the view is scrolled in the inertia（惯性）
      */
     public void onScrollChanged(int scrollY, boolean firstScroll, boolean dragging);
 

@@ -29,6 +29,7 @@ import android.widget.ListView;
 
 /**
  * ListView that its scroll position can be observed.
+ * 该ListView可以监测到滚动的位置
  */
 public class ObservableListView extends ListView implements Scrollable {
 
@@ -38,18 +39,18 @@ public class ObservableListView extends ListView implements Scrollable {
     private int mPrevScrolledChildrenHeight;
     private int mPrevScrollY;
     private int mScrollY;
-    private SparseIntArray mChildrenHeights;
+    private SparseIntArray mChildrenHeights;//使用折半查找方式的集合，替换 HashMap 提高性能
 
     // Fields that don't need to be saved onSaveInstanceState
-    private ObservableScrollViewCallbacks mCallbacks;
-    private ScrollState mScrollState;
-    private boolean mFirstScroll;
-    private boolean mDragging;
+    private ObservableScrollViewCallbacks mCallbacks; //触摸状态的回调
+    private ScrollState mScrollState; //滚动的状态
+    private boolean mFirstScroll;  //是否第一次滚动
+    private boolean mDragging;     //是否是拖拽？对应是 惯性滚动
     private boolean mIntercepted;
-    private MotionEvent mPrevMoveEvent;
+    private MotionEvent mPrevMoveEvent; //前一个触摸状态
     private ViewGroup mTouchInterceptionViewGroup;
 
-    private OnScrollListener mOriginalScrollListener;
+    private OnScrollListener mOriginalScrollListener; //原始的滑动监听
     private OnScrollListener mScrollListener = new OnScrollListener() {
         @Override
         public void onScrollStateChanged(AbsListView view, int scrollState) {
